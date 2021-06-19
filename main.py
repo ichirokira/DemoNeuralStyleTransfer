@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_webrtc import VideoTransformerFactory, webrtc_streamer
+#from streamlit_webrtc import VideoTransformerFactory, webrtc_streamer
 import torch
 from utils import *
 import tempfile
@@ -32,7 +32,7 @@ def app_image():
 
 
     if style != "None":
-        style_image_path = "./21styles/"+style
+        style_image_path = "./images/21styles/"+style
         if os.path.exists(style_image_path+".jpg"):
             style_image_path += ".jpg"
         else:
