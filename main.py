@@ -32,11 +32,7 @@ def app_image():
     style_image_path = None
 
 
-    style = st.sidebar.selectbox("Styles: ", ("None", "candy", "composition_vii", "escher_sphere", "feathers"
-                                              ,"forest", "frida_kahlo", "house_water", "la_muse", "mosaic_ducks_massimo",
-                                              "mosaic", "pencil", "picasso_selfport1907", "rain_princess", "Robert_Delaunay,_1906,_Portrait",
-                                              "sea_rock", "sea", "seated-nude", "shipwreck", "starry_night", "stars2", "strp",
-                                              "the_scream", "udnie", "wave", "woman-with-hat-matisse") )
+    style = st.sidebar.selectbox("Styles: ", ("None", "173","6", "27", "40","48", "66","67","72","73", "87") )
 
     quotes = st.empty()
     start_button = st.empty()
@@ -44,7 +40,7 @@ def app_image():
 
 
     if style != "None":
-        style_image_path = "./images/21styles/"+style
+        style_image_path = "./images/10styles/style-"+style
         if os.path.exists(style_image_path+".jpg"):
             style_image_path += ".jpg"
         else:
