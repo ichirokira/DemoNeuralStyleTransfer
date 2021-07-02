@@ -28,6 +28,7 @@ def app_image():
             del model_dict[key]
     style_model = Net(ngf=128)
     style_model.load_state_dict(model_dict, False)
+    style_model.cuda()
     style_image_path = None
 
 
@@ -61,13 +62,13 @@ def app_image():
 
         st.image(img)
         content_image = tensor_load_rgbimage(tfile.name, keep_asp=True).unsqueeze(0)
-
+        content_image = content_image.cuda()
         if style_image_path is None:
             quotes.write("Please choose a Style")
         else:
             style = tensor_load_rgbimage(style_image_path).unsqueeze(0)
             style = preprocess_batch(style)
-
+            style = style.cuda()
         start = start_button.button("Start")
         if start:
             quotes.write("Process your image......")
@@ -83,7 +84,7 @@ def app_image():
             img = output.data[0]
             (b, g, r) = torch.chunk(img, 3)
             img = torch.cat((r, g, b))
-            img = img.clone().clamp(0, 255).numpy()
+            img = img.clone().cpu().clamp(0, 255).numpy()
             img = img.transpose(1, 2, 0).astype('uint8')
             img = Image.fromarray(img)
             st.image(img, "Output")
