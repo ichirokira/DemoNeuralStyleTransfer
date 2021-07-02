@@ -6,6 +6,12 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 
 
+def preprocess(img):
+    return (img / 255. - 0.5) * 2
+
+
+def deprocess(img):
+    return (img + 1) / 2
 # define Gram Matrix
 class GramMatrix(nn.Module):
     def forward(self, y):
